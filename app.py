@@ -15,6 +15,8 @@ def waiting():
     
 
 def type_string_with_delay(string):
+    count_window = (int)(input("Please enter count of windows : ")) - 1
+    print("count window = ", count_window)   
     tab_index = (int)(input("Please enter tab index : "))    
     waiting()
     prev_time = datetime.now()
@@ -23,7 +25,7 @@ def type_string_with_delay(string):
             if random.random() < 0.6:
                 alt_tab_count = tab_index
             else:
-                alt_tab_count = random.randint(1, 10)
+                alt_tab_count = random.randint(1, count_window)
             print("alt_tab_count = ", alt_tab_count)
             
             ctrlr.press(Key.alt)
