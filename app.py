@@ -9,7 +9,7 @@ ctrlr = Controller()  # Create the controller
 
 def waiting():
     print("starting ...")
-    for i in range(10, 0, -1):
+    for i in range(20, 0, -1):
         print(i)
         time.sleep(1)
     
@@ -21,7 +21,7 @@ def type_string_with_delay(string):
     waiting()
     prev_time = datetime.now()
     for character in string:        
-        if (datetime.now() - prev_time).seconds >= 5:                        
+        if (datetime.now() - prev_time).seconds >= 60:                        
             if random.random() < 0.6:
                 alt_tab_count = tab_index
             else:
