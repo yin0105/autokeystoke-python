@@ -20,67 +20,68 @@ def type_string_with_delay(string):
     tab_index = (int)(input("Please enter tab index : "))    
     waiting()
     prev_time = datetime.now()
-    for character in string:        
-        if (datetime.now() - prev_time).seconds >= 60:                        
-            if random.random() < 0.6:
-                alt_tab_count = tab_index
-            else:
-                alt_tab_count = random.randint(1, count_window)
-            print("alt_tab_count = ", alt_tab_count)
-            
-            ctrlr.press(Key.alt)
-            for i in range(alt_tab_count):
-                ctrlr.press(Key.tab)
-                ctrlr.release(Key.tab)
-                time.sleep(0.1)
-            ctrlr.release(Key.alt)
-            time.sleep(0.5)
-
-            if alt_tab_count == tab_index:
-                ctrlr.press(Key.ctrl)                
-                ctrl_tab_count = random.randint(1, 10)
-                print("ctrl_tab_count = ", ctrl_tab_count)
-                for i in range(ctrl_tab_count):
-                    print("ctrl tab : ", i)
+    while True:
+        for character in string:        
+            if (datetime.now() - prev_time).seconds >= 60:                        
+                if random.random() < 0.6:
+                    alt_tab_count = tab_index
+                else:
+                    alt_tab_count = random.randint(1, count_window)
+                print("alt_tab_count = ", alt_tab_count)
+                
+                ctrlr.press(Key.alt)
+                for i in range(alt_tab_count):
                     ctrlr.press(Key.tab)
                     ctrlr.release(Key.tab)
                     time.sleep(0.1)
-                ctrlr.release(Key.ctrl)
+                ctrlr.release(Key.alt)
                 time.sleep(0.5)
 
-            print("== restore tab position ==")
-            ctrlr.press(Key.alt)
-            ctrlr.press(Key.tab)
-            ctrlr.release(Key.tab)
-            ctrlr.release(Key.alt)
-            time.sleep(0.5)
+                if alt_tab_count == tab_index:
+                    ctrlr.press(Key.ctrl)                
+                    ctrl_tab_count = random.randint(1, 10)
+                    print("ctrl_tab_count = ", ctrl_tab_count)
+                    for i in range(ctrl_tab_count):
+                        print("ctrl tab : ", i)
+                        ctrlr.press(Key.tab)
+                        ctrlr.release(Key.tab)
+                        time.sleep(0.1)
+                    ctrlr.release(Key.ctrl)
+                    time.sleep(0.5)
 
-            if alt_tab_count > tab_index:
-                tab_index += 1
-            elif alt_tab_count == tab_index:
-                tab_index = 1
+                print("== restore tab position ==")
+                ctrlr.press(Key.alt)
+                ctrlr.press(Key.tab)
+                ctrlr.release(Key.tab)
+                ctrlr.release(Key.alt)
+                time.sleep(0.5)
 
-            prev_time = datetime.now()
-        else:
-            ctrlr.type(character)
+                if alt_tab_count > tab_index:
+                    tab_index += 1
+                elif alt_tab_count == tab_index:
+                    tab_index = 1
 
-        delay = random.randint(1, 10)  # Generate a random number between 0 and 10
-        
-        count = 0
-        while count < delay:
-            try: #used try so that if user pressed other than the given key error will not be shown
-                if keyboard.is_pressed(' '): #if key 'a' is pressed 
-                    print('You Pressed "Break" Key!')
-                    waiting()
-                    break #finishing the loop
-                else:
-                    pass
-            except Exception as e:
-                print("=== error ", e)
-                time.sleep(4)
-                break 
-            time.sleep(0.1)
-            count += 1
+                prev_time = datetime.now()
+            else:
+                ctrlr.type(character)
+
+            delay = random.randint(1, 10)  # Generate a random number between 0 and 10
+            
+            count = 0
+            while count < delay:
+                try: #used try so that if user pressed other than the given key error will not be shown
+                    if keyboard.is_pressed(' '): #if key 'a' is pressed 
+                        print('You Pressed "Break" Key!')
+                        waiting()
+                        break #finishing the loop
+                    else:
+                        pass
+                except Exception as e:
+                    print("=== error ", e)
+                    time.sleep(4)
+                    break 
+                time.sleep(0.1)
+                count += 1
 
 type_string_with_delay("""
 New report in yogo-admin -> Reports.
