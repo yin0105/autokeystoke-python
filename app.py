@@ -26,7 +26,7 @@ def type_string_with_delay(string):
                 if random.random() < 0.6:
                     alt_tab_count = tab_index
                 else:
-                    alt_tab_count = random.randint(1, count_window)
+                    alt_tab_count = random.randint(2, count_window)
                 print("alt_tab_count = ", alt_tab_count)
                 
                 ctrlr.press(Key.alt)
