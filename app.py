@@ -22,7 +22,7 @@ def type_string_with_delay(string):
     prev_time = datetime.now()
     while True:
         for character in string:        
-            if (datetime.now() - prev_time).seconds >= 60:                        
+            if (datetime.now() - prev_time).seconds >= 115:                        
                 if random.random() < 0.6:
                     alt_tab_count = tab_index
                 else:
