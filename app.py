@@ -65,7 +65,7 @@ def type_string_with_delay(string):
             else:
                 ctrlr.type(character)
 
-            delay = random.randint(1, 10)  # Generate a random number between 0 and 10
+            delay = random.randint(5, 20)  # Generate a random number between 0 and 10
             
             count = 0
             while count < delay:
