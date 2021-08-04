@@ -1,7 +1,5 @@
-import time
-import random
+import time, sys, random, keyboard
 from pynput.keyboard import Key, Controller
-import keyboard
 from datetime import datetime
 
 ctrlr = Controller()  # Create the controller
@@ -15,6 +13,8 @@ def waiting():
     
 
 def type_string_with_delay(string):
+    global transition
+
     count_window = (int)(input("Please enter count of windows : ")) - 1
     print("count window = ", count_window)   
     tab_index = (int)(input("Please enter tab index : "))    
@@ -22,7 +22,7 @@ def type_string_with_delay(string):
     prev_time = datetime.now()
     while True:
         for character in string:        
-            if (datetime.now() - prev_time).seconds >= 115:                        
+            if transition and (datetime.now() - prev_time).seconds >= 115:                        
                 if random.random() < 0.6:
                     alt_tab_count = tab_index
                 else:
@@ -82,6 +82,11 @@ def type_string_with_delay(string):
                     break 
                 time.sleep(0.1)
                 count += 1
+
+transition = True
+if len(sys.argv) > 1 and sys.argv[1] == "-n":
+    print("== No Transition ==")
+    transition = False
 
 type_string_with_delay("""
 New report in yogo-admin -> Reports.
